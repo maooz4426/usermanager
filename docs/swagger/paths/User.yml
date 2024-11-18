@@ -1,10 +1,12 @@
 get:
   operationId: getUser
   description: user取得
+  parameters:
+    - $ref: "../components/UserUUID.yml"
   responses:
     200:
       content:
         application/json:
           schema:
-            $ref: "../components/user.yml#/User"
+            $ref: "../components/User.yml#/User"
 

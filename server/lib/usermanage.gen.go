@@ -4,9 +4,25 @@
 package usermanage
 
 import (
+	"fmt"
+	"net/http"
+
 	"github.com/labstack/echo/v4"
+	"github.com/oapi-codegen/runtime"
 	openapi_types "github.com/oapi-codegen/runtime/types"
 )
+
+// User defines model for User.
+type User struct {
+	// Email userのemail
+	Email *string `json:"email,omitempty"`
+
+	// Name userの名前
+	Name *string `json:"name,omitempty"`
+
+	// Uuid userのuuid
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
 
 // UserSignInError defines model for UserSignInError.
 type UserSignInError struct {
@@ -47,6 +63,9 @@ type UserSignupResponse struct {
 	Uuid openapi_types.UUID `json:"uuid"`
 }
 
+// UserUUID defines model for UserUUID.
+type UserUUID = int64
+
 // UserSignInJSONRequestBody defines body for UserSignIn for application/json ContentType.
 type UserSignInJSONRequestBody = UserSignInRequest
 
@@ -61,6 +80,9 @@ type ServerInterface interface {
 
 	// (POST /users/signup)
 	UserSignUp(ctx echo.Context) error
+
+	// (GET /users/{uuid})
+	GetUser(ctx echo.Context, uuid UserUUID) error
 }
 
 // ServerInterfaceWrapper converts echo contexts to parameters.
@@ -83,6 +105,22 @@ func (w *ServerInterfaceWrapper) UserSignUp(ctx echo.Context) error {
 
 	// Invoke the callback with all the unmarshaled arguments
 	err = w.Handler.UserSignUp(ctx)
+	return err
+}
+
+// GetUser converts echo context to params.
+func (w *ServerInterfaceWrapper) GetUser(ctx echo.Context) error {
+	var err error
+	// ------------- Path parameter "uuid" -------------
+	var uuid UserUUID
+
+	err = runtime.BindStyledParameterWithOptions("simple", "uuid", ctx.Param("uuid"), &uuid, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter uuid: %s", err))
+	}
+
+	// Invoke the callback with all the unmarshaled arguments
+	err = w.Handler.GetUser(ctx, uuid)
 	return err
 }
 
@@ -116,5 +154,6 @@ func RegisterHandlersWithBaseURL(router EchoRouter, si ServerInterface, baseURL 
 
 	router.POST(baseURL+"/users/signin", wrapper.UserSignIn)
 	router.POST(baseURL+"/users/signup", wrapper.UserSignUp)
+	router.GET(baseURL+"/users/:uuid", wrapper.GetUser)
 
 }

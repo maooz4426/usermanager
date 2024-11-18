@@ -5,8 +5,8 @@ info:
   version: 1.0.0
 
 paths:
-#  /users/{uuid}:
-#    $ref: "./paths/user.yml"
+  /users/{uuid}:
+    $ref: "./paths/User.yml"
   /users/signup:
     $ref: "./paths/UserSignUp.yml"
   /users/signin:
