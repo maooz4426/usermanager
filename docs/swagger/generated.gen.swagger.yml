@@ -44,6 +44,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserSignInResponse'
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSignInError'
 components:
   schemas:
     User:
@@ -108,3 +113,17 @@ components:
           description: userのuuid
       required:
         - uuid
+    UserSignInError:
+      properties:
+        code:
+          example: 500-000
+          type: string
+        errors:
+          items:
+            example: エラーが発生しました
+            type: string
+          type: array
+      required:
+        - code
+        - errors
+      type: object
