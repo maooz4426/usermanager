@@ -1,0 +1,10 @@
+get:
+  operationId: getUser
+  description: user取得
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: "../components/user.yml#/User"
+

@@ -1,0 +1,22 @@
+UserSignInRequest:
+  properties:
+    email:
+      type: string
+      format: string
+      description: "userのemail"
+    password:
+      type: string
+      format: string
+      description: "userのパスワード"
+  required:
+    - email
+    - password
+
+UserSignInResponse:
+  properties:
+    uuid:
+      type: string
+      format: uuid
+      description: "userのuuid"
+  required:
+    - uuid

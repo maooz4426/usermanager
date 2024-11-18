@@ -1,0 +1,15 @@
+User:
+  type: object
+  properties:
+    uuid:
+      type: string
+      format: uuid
+      description: "userのuuid"
+    name:
+      type: string
+      format: string
+      description: "userの名前"
+    email:
+      type: string
+      format: string
+      description: "userのemail"
