@@ -1,0 +1,14 @@
+post:
+  operationId: UserSignUp
+  description: userのsignup
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../components/UserSignup.yml#/UserSignupRequest"
+  responses:
+    201:
+     content:
+      application/json:
+        schema:
+          $ref: "../components/UserSignup.yml#/UserSignupResponse"

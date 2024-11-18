@@ -1,0 +1,14 @@
+post:
+  operationId: UserSignIn
+  description: userのsigninリクエスト
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../components/UserSignIn.yml#/UserSignInRequest"
+  responses:
+    200:
+      content:
+        application/json:
+          schema:
+            $ref: "../components/UserSignIn.yml#/UserSignInResponse"

@@ -1,0 +1,110 @@
+openapi: 3.0.0
+info:
+  title: User Management API
+  description: ユーザ管理のAPI
+  version: 1.0.0
+paths:
+  /users/{uuid}:
+    get:
+      operationId: getUser
+      description: user取得
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/signup:
+    post:
+      operationId: UserSignUp
+      description: userのsignup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSignupRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSignupResponse'
+  /users/signin:
+    post:
+      operationId: UserSignIn
+      description: userのsigninリクエスト
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSignInRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSignInResponse'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: userのuuid
+        name:
+          type: string
+          format: string
+          description: userの名前
+        email:
+          type: string
+          format: string
+          description: userのemail
+    UserSignupRequest:
+      properties:
+        name:
+          type: string
+          format: string
+          description: userの名前
+        email:
+          type: string
+          format: string
+          description: userのemail
+        password:
+          type: string
+          format: string
+          description: userのパスワード
+      required:
+        - name
+        - email
+        - password
+    UserSignupResponse:
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: userのuuid
+      required:
+        - uuid
+    UserSignInRequest:
+      properties:
+        email:
+          type: string
+          format: string
+          description: userのemail
+        password:
+          type: string
+          format: string
+          description: userのパスワード
+      required:
+        - email
+        - password
+    UserSignInResponse:
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: userのuuid
+      required:
+        - uuid
