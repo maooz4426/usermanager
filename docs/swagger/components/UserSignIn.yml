@@ -20,3 +20,18 @@ UserSignInResponse:
       description: "userのuuid"
   required:
     - uuid
+
+UserSignInError:
+  properties:
+    code:
+      example: 500-000
+      type: string
+    errors:
+      items:
+        example: エラーが発生しました
+        type: string
+      type: array
+  required:
+    - code
+    - errors
+  type: object
