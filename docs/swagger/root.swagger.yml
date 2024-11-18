@@ -6,7 +6,7 @@ info:
 
 paths:
   /users/{uuid}:
-    $ref: "./paths/user.yml"
+    $ref: "./paths/User.yml"
   /users/signup:
     $ref: "./paths/UserSignUp.yml"
   /users/signin:

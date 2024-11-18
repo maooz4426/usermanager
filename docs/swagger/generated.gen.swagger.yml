@@ -8,6 +8,8 @@ paths:
     get:
       operationId: getUser
       description: user取得
+      parameters:
+        - $ref: '#/components/parameters/UserUUID'
       responses:
         '200':
           content:
@@ -50,6 +52,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserSignInError'
 components:
+  parameters:
+    UserUUID:
+      name: uuid
+      in: path
+      description: userのuuid
+      required: true
+      schema:
+        type: integer
+        format: int64
+      example: 1
   schemas:
     User:
       type: object

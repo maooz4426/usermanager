@@ -1,0 +1,5 @@
+package: usermanage
+generate:
+  echo-server: true
+  models: true
+output: ./server/infra/lib/usermanage.gen.go
