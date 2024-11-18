@@ -4,16 +4,6 @@ info:
   description: ユーザ管理のAPI
   version: 1.0.0
 paths:
-  /users/{uuid}:
-    get:
-      operationId: getUser
-      description: user取得
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
   /users/signup:
     post:
       operationId: UserSignUp
@@ -51,21 +41,6 @@ paths:
                 $ref: '#/components/schemas/UserSignInError'
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          description: userのuuid
-        name:
-          type: string
-          format: string
-          description: userの名前
-        email:
-          type: string
-          format: string
-          description: userのemail
     UserSignupRequest:
       properties:
         name:
