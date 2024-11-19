@@ -4,7 +4,7 @@ CREATE TABLE `users` (
     `uuid` VARCHAR(36) NOT NULL UNIQUE,
     `name` VARCHAR(256) NOT NULL,
     `email` VARCHAR(256) NOT NULL UNIQUE,
-    `password` VARCHAR(128) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_bin;
 

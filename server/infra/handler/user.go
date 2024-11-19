@@ -30,7 +30,18 @@ func (h *Handler) UserSignUp(ctx echo.Context) error {
 
 // (POST /users/signup)
 func (h *Handler) UserSignIn(ctx echo.Context) error {
-	return nil
+	var req usermanage.UserSignInRequest
+
+	if err := ctx.Bind(&req); err != nil {
+		return ctx.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
+	}
+
+	uuid, err := h.UserUsecase.SignIn(ctx.Request().Context(), &req)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, echo.Map{"error": err.Error()})
+	}
+
+	return ctx.JSON(http.StatusCreated, echo.Map{"uuid": uuid})
 }
 
 // (GET /users/{uuid})

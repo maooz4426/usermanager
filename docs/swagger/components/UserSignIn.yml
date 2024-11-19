@@ -25,9 +25,9 @@ UserSignInResponse:
 
 UserSignInError:
   properties:
-    code:
-      example: 500-000
-      type: string
+#    code:
+#      example: 500-000
+#      type: string
     errors:
       items:
         example: エラーが発生しました

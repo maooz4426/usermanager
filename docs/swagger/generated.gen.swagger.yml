@@ -131,9 +131,6 @@ components:
         - uuid
     UserSignInError:
       properties:
-        code:
-          example: 500-000
-          type: string
         errors:
           items:
             example: エラーが発生しました

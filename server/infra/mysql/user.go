@@ -3,6 +3,7 @@ package mysql
 import (
 	"context"
 	"github.com/gocraft/dbr/v2"
+	uuid2 "github.com/google/uuid"
 	"github.com/maooz4426/usermanager/domain/entity"
 	"github.com/maooz4426/usermanager/domain/repository"
 )
@@ -22,11 +23,11 @@ func NewUserRepository(sess *dbr.Session) repository.IUserRepository {
 }
 
 type schemaUsers struct {
-	ID       int    `db:id`
-	UUID     string `db:uuid`
-	Name     string `db:name`
-	Email    string `db:email`
-	Password string `db:password`
+	ID       int    `db:"id"`
+	UUID     string `db:"uuid"`
+	Name     string `db:"name"`
+	Email    string `db:"email"`
+	Password string `db:"password"`
 }
 
 func entityToSchemaUsers(entity *entity.User) *schemaUsers {
@@ -46,4 +47,23 @@ func (r *UserRepository) Create(ctx context.Context, entity *entity.User) error 
 	}
 
 	return nil
+}
+
+func (r *UserRepository) FindByEmail(ctx context.Context, email string) (*entity.User, error) {
+	var schemaUser schemaUsers
+	_, err := r.sess.Select("uuid", "name", "email", "password").From(TableName).Where("email = ?", email).LoadContext(ctx, &schemaUser)
+	if err != nil {
+		return nil, err
+	}
+
+	uuid, err := uuid2.Parse(schemaUser.UUID)
+	if err != nil {
+		return nil, err
+	}
+
+	user := &entity.User{
+		UUID:     uuid,
+		Password: schemaUser.Password,
+	}
+	return user, err
 }

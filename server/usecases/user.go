@@ -37,3 +37,17 @@ func (s *UserUsecase) Signup(ctx context.Context, req *usermanage.UserSignupRequ
 	}
 	return user.UUID, nil
 }
+
+func (s *UserUsecase) SignIn(ctx context.Context, req *usermanage.UserSignInRequest) (uuid.UUID, error) {
+	user, err := s.userRepository.FindByEmail(ctx, req.Email)
+	if err != nil {
+		return uuid.UUID{}, err
+	}
+	
+	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password))
+	if err != nil {
+		return uuid.UUID{}, err
+	}
+
+	return user.UUID, nil
+}

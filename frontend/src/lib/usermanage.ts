@@ -2,20 +2,18 @@ import { makeApi, Zodios, type ZodiosOptions } from "@zodios/core";
 import { z } from "zod";
 
 const User = z
-  .object({ uuid: z.string().uuid(), name: z.string(), email: z.string() })
+  .object({ uuid: z.string(), name: z.string(), email: z.string() })
   .partial()
   .passthrough();
 const UserSignupRequest = z
   .object({ name: z.string(), email: z.string(), password: z.string() })
   .passthrough();
-const UserSignupResponse = z.object({ uuid: z.string().uuid() }).passthrough();
+const UserSignupResponse = z.object({ uuid: z.string() }).passthrough();
 const UserSignInRequest = z
   .object({ email: z.string(), password: z.string() })
   .passthrough();
-const UserSignInResponse = z.object({ uuid: z.string().uuid() }).passthrough();
-const UserSignInError = z
-  .object({ code: z.string(), errors: z.array(z.string()) })
-  .passthrough();
+const UserSignInResponse = z.object({ uuid: z.string() }).passthrough();
+const UserSignInError = z.object({ errors: z.array(z.string()) }).passthrough();
 
 export const schemas = {
   User,
@@ -33,6 +31,13 @@ const endpoints = makeApi([
     alias: "getUser",
     description: `user取得`,
     requestFormat: "json",
+    parameters: [
+      {
+        name: "uuid",
+        type: "Path",
+        schema: z.number().int(),
+      },
+    ],
     response: User,
   },
   {
@@ -45,12 +50,10 @@ const endpoints = makeApi([
       {
         name: "body",
         type: "Body",
-        schema: z
-          .object({ email: z.string(), password: z.string() })
-          .passthrough(),
+        schema: UserSignInRequest,
       },
     ],
-    response: z.object({ uuid: z.string().uuid() }).passthrough(),
+    response: z.object({ uuid: z.string() }).passthrough(),
     errors: [
       {
         status: 404,
@@ -68,12 +71,10 @@ const endpoints = makeApi([
       {
         name: "body",
         type: "Body",
-        schema: z
-          .object({ name: z.string(), email: z.string(), password: z.string() })
-          .passthrough(),
+        schema: UserSignupRequest,
       },
     ],
-    response: z.object({ uuid: z.string().uuid() }).passthrough(),
+    response: z.object({ uuid: z.string() }).passthrough(),
   },
 ]);
 
