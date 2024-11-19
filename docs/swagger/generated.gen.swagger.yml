@@ -68,7 +68,7 @@ components:
       properties:
         uuid:
           type: string
-          format: uuid
+          format: string
           description: userのuuid
         name:
           type: string
@@ -79,6 +79,7 @@ components:
           format: string
           description: userのemail
     UserSignupRequest:
+      type: object
       properties:
         name:
           type: string
@@ -97,14 +98,16 @@ components:
         - email
         - password
     UserSignupResponse:
+      type: object
       properties:
         uuid:
           type: string
-          format: uuid
+          format: string
           description: userのuuid
       required:
         - uuid
     UserSignInRequest:
+      type: object
       properties:
         email:
           type: string
@@ -118,10 +121,11 @@ components:
         - email
         - password
     UserSignInResponse:
+      type: object
       properties:
         uuid:
           type: string
-          format: uuid
+          format: string
           description: userのuuid
       required:
         - uuid

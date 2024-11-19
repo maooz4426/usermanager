@@ -3,7 +3,7 @@ User:
   properties:
     uuid:
       type: string
-      format: uuid
+      format: string
       description: "userのuuid"
     name:
       type: string

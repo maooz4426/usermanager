@@ -2,4 +2,4 @@ package: usermanage
 generate:
   echo-server: true
   models: true
-output: ./server/infra/lib/usermanage.gen.go
+output: ./server/lib/usermanage/generated.gen.go
