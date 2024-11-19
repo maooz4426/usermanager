@@ -1,4 +1,5 @@
 UserSignupRequest:
+  type: object
   properties:
     name:
       type: string
@@ -18,10 +19,11 @@ UserSignupRequest:
     - password
 
 UserSignupResponse:
+  type: object
   properties:
     uuid:
       type: string
-      format: uuid
+      format: string
       description: "userのuuid"
   required:
     - uuid

@@ -3,6 +3,6 @@ in: path
 description: "userのuuid"
 required: true
 schema:
-    type: "integer"
-    format: "int64"
+    type: integer
+    format: int64
 example: 1

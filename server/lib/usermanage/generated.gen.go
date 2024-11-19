@@ -9,7 +9,6 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/oapi-codegen/runtime"
-	openapi_types "github.com/oapi-codegen/runtime/types"
 )
 
 // User defines model for User.
@@ -21,7 +20,7 @@ type User struct {
 	Name *string `json:"name,omitempty"`
 
 	// Uuid userのuuid
-	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+	Uuid *string `json:"uuid,omitempty"`
 }
 
 // UserSignInError defines model for UserSignInError.
@@ -42,7 +41,7 @@ type UserSignInRequest struct {
 // UserSignInResponse defines model for UserSignInResponse.
 type UserSignInResponse struct {
 	// Uuid userのuuid
-	Uuid openapi_types.UUID `json:"uuid"`
+	Uuid string `json:"uuid"`
 }
 
 // UserSignupRequest defines model for UserSignupRequest.
@@ -60,7 +59,7 @@ type UserSignupRequest struct {
 // UserSignupResponse defines model for UserSignupResponse.
 type UserSignupResponse struct {
 	// Uuid userのuuid
-	Uuid openapi_types.UUID `json:"uuid"`
+	Uuid string `json:"uuid"`
 }
 
 // UserUUID defines model for UserUUID.

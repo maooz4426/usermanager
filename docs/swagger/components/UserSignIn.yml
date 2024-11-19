@@ -1,4 +1,5 @@
 UserSignInRequest:
+  type: object
   properties:
     email:
       type: string
@@ -13,19 +14,20 @@ UserSignInRequest:
     - password
 
 UserSignInResponse:
+  type: object
   properties:
     uuid:
       type: string
-      format: uuid
+      format: string
       description: "userのuuid"
   required:
     - uuid
 
 UserSignInError:
   properties:
-    code:
-      example: 500-000
-      type: string
+#    code:
+#      example: 500-000
+#      type: string
     errors:
       items:
         example: エラーが発生しました

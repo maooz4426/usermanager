@@ -1,8 +1,9 @@
 services:
   server:
+    container_name: usermanage_server
     build:
       context: .
-      dockerfile: ./docker/go/Dockerfile
+      dockerfile: Dockerfile
     tty: true
     depends_on:
       - db
@@ -10,7 +11,7 @@ services:
       - 8080:8080
   db:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: usermanage_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
