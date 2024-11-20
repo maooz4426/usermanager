@@ -44,6 +44,8 @@ jobs:
         uses: actions/setup-go@v5.1.0
         with:
           go-version-file: './server/go.mod'
+      - name: change dilectory
+        run: cd server
       - name: go mod tidy
         run: go mod tidy
       - name: install sql-migrate
