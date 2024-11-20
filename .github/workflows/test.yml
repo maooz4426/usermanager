@@ -43,7 +43,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5.1.0
         with:
-          go-version-file: 'go.mod'
+          go-version-file: './server/go.mod'
       - name: go mod tidy
         run: go mod tidy
       - name: install sql-migrate
