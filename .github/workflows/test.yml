@@ -53,7 +53,7 @@ jobs:
           until( echo 'SELECT 1' |mysql -h 127.0.0.1 -P 3306 -uroot --silent &> /dev/null); do echo "waiting for mysql to be connectable" && sleep 2; done
       - name: migrate for tbls
         run: |
-          mysql -h 127.0.0.1 -u root -e "CREATE DATABASE IF NOT EXIST db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
+          mysql -h 127.0.0.1 -u root -e "CREATE DATABASE IF NOT EXISTS db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
           sql-migrate up -env="develop"
       - name: install tbls
         uses: k1low/setup-tbls@v1
