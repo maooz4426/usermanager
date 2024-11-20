@@ -6,6 +6,6 @@ development:
 
 ci:
     dialect: mysql
-    dir: ./migrations
+    dir: ./server/migrations
     datasource: root@tcp(127.0.0.1)/db?parseTime=true
     table: migrations
