@@ -1,0 +1,29 @@
+run:
+  deadline: 5m
+  allow-parallel-runners: true
+linters:
+  disable-all: true
+  enable:
+    - gofmt
+    - goimports
+    - govet
+    - typecheck
+    - errcheck
+    - errname
+    - errorlint
+    - nilerr
+    - makezero
+    - ineffassign
+    - gosec
+    - noctx
+    - staticcheck
+    - unused
+    - copyloopvar
+    - decorder
+    - misspell
+    - whitespace
+
+issues:
+  exclude-dirs:
+    - config
+
