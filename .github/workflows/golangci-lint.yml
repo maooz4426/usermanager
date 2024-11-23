@@ -33,7 +33,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           workdir: "./server"
-          go_version_file: "go.mod"
+          go_version_file: "./server/go.mod"
           golangci_lint_flags: "--config=./config/.golangci.yml"
         
 
