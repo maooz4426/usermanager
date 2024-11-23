@@ -26,9 +26,11 @@ jobs:
         with:
           go-version-file: "./server/go.mod"
       - name: lint
-        uses: golangci/golangci-lint-action@v6
+        uses: reviewdog/action-golangci-lint@v2
         with:
-          working-directory: "./server"
+          workdir: "./server"
+          go_version_file: "go.mod"
+          golangci_lint_flags: "--config=./config/.golangci.yml"
         
 
 
