@@ -2,9 +2,10 @@ name: golangci-lint
 
 on:
   push:
+    branches:
     - develop
   pull_request:
-    type:
+    types:
       - opened
       - reopened
       - synchronize
@@ -15,7 +16,9 @@ jobs:
   lint:
     name: lint
     permissions:
+      checks: write
       contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -25,7 +28,15 @@ jobs:
         with:
           go-version-file: "./server/go.mod"
       - name: lint
-        uses: golangci/golangci-lint-action@v6
-        
+        uses: reviewdog/action-golangci-lint@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          workdir: "./server"
+          go_version_file: "./server/go.mod"
+          level: error
+          fail_on_error: true
+          golangci_lint_flags: "--config=./config/.golangci.yml"
+          filter_mode: nofilter
 
 

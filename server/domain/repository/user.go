@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+
 	"github.com/maooz4426/usermanager/domain/entity"
 )
 

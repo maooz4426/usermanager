@@ -8,3 +8,6 @@ gen/wire:
 gen/migration:
 	$(eval DATE:=$(shell TZ=JST-9 date "+%Y%m%d%H%M%S"))
 	touch ./migrations/$(DATE)-$(FILE_NAME).sql
+
+golint:
+	golangci-lint run --fix --config "./config/.golangci.yml"
