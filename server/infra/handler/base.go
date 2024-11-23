@@ -1,16 +1,16 @@
 package handler
 
 import (
-	"github.com/maooz4426/usermanager/domain/port"
 	"github.com/maooz4426/usermanager/lib/usermanage"
+	"github.com/maooz4426/usermanager/usecases"
 )
 
 type Handler struct {
-	UserUsecase port.IUserUsecase
+	UserUsecase *usecases.UserUsecase
 }
 
 func NewHandler(
-	userUsecase port.IUserUsecase,
+	userUsecase *usecases.UserUsecase,
 ) usermanage.ServerInterface {
 	return &Handler{
 		UserUsecase: userUsecase,
