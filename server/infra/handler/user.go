@@ -1,9 +1,10 @@
 package handler
 
 import (
+	"net/http"
+
 	"github.com/labstack/echo/v4"
 	"github.com/maooz4426/usermanager/lib/usermanage"
-	"net/http"
 )
 
 // (POST /users/signup)
