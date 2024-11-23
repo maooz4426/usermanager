@@ -3,3 +3,9 @@ development:
     dir: ./migrations
     datasource: user:password@tcp(127.0.0.1)/db?parseTime=true
     table: migrations
+
+ci:
+    dialect: mysql
+    dir: ./server/migrations
+    datasource: root@tcp(127.0.0.1)/db?parseTime=true
+    table: migrations

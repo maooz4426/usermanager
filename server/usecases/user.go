@@ -4,7 +4,6 @@ import (
 	"context"
 	"github.com/google/uuid"
 	"github.com/maooz4426/usermanager/domain/entity"
-	"github.com/maooz4426/usermanager/domain/port"
 	"github.com/maooz4426/usermanager/domain/repository"
 	"github.com/maooz4426/usermanager/lib/usermanage"
 	"golang.org/x/crypto/bcrypt"
@@ -14,7 +13,7 @@ type UserUsecase struct {
 	userRepository repository.IUserRepository
 }
 
-func NewUserUsecase(userRepository repository.IUserRepository) port.IUserUsecase {
+func NewUserUsecase(userRepository repository.IUserRepository) *UserUsecase {
 	return &UserUsecase{userRepository: userRepository}
 }
 
@@ -43,7 +42,7 @@ func (s *UserUsecase) SignIn(ctx context.Context, req *usermanage.UserSignInRequ
 	if err != nil {
 		return uuid.UUID{}, err
 	}
-	
+
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(req.Password))
 	if err != nil {
 		return uuid.UUID{}, err

@@ -18,7 +18,7 @@ import (
 
 func Wire(sess *dbr.Session) usermanage.ServerInterface {
 	iUserRepository := mysql.NewUserRepository(sess)
-	iUserUsecase := usecases.NewUserUsecase(iUserRepository)
-	serverInterface := handler.NewHandler(iUserUsecase)
+	userUsecase := usecases.NewUserUsecase(iUserRepository)
+	serverInterface := handler.NewHandler(userUsecase)
 	return serverInterface
 }
