@@ -1,0 +1,29 @@
+on:
+  push:
+    - develop
+  pull_request:
+    type:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - develop
+
+jobs:
+  lint:
+    name: lint
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.2.2
+      - name: setup for go
+        uses: actions/setup-go@v5.1.0
+        with:
+          go-version-file: "./server/go.mod"
+      - name: lint
+        uses: golangci/golangci-lint-action@v6
+        
+
+
