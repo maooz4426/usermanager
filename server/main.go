@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/gocraft/dbr/v2"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/maooz4426/usermanager/infra/wire"
 	"github.com/maooz4426/usermanager/lib/usermanage"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
