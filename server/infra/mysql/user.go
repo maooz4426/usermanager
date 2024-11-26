@@ -2,11 +2,12 @@ package mysql
 
 import (
 	"context"
+	"log"
+
 	"github.com/gocraft/dbr/v2"
 	"github.com/google/uuid"
 	"github.com/maooz4426/usermanager/domain/entity"
 	"github.com/maooz4426/usermanager/domain/repository"
-	"log"
 )
 
 const (
