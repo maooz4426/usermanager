@@ -1,6 +1,5 @@
-
 gen/swagger:
-	redocly bundle ./docs/swagger/root.swagger.yml --output=./docs/swagger/generated.gen.swagger.yml
+	npx redocly bundle ./docs/swagger/root.swagger.yml --output=./docs/swagger/generated.gen.swagger.yml
 
 gen/oapicodegen:
 	oapi-codegen -config ./server/config/.codegen.usermanage.config.yml ./docs/swagger/generated.gen.swagger.yml

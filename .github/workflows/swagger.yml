@@ -1,0 +1,37 @@
+name: swagger-ci
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    branches:
+      - develop
+
+jobs:
+  swagger:
+    name: swagger-generate
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.2.2
+      - name: setup node
+        uses: actions/setup-node@v4.1.0
+        with:
+          node-version: 20
+      - name: redocly install
+        run: npm install -g @redocly/cli
+      - name: redocly bundle
+        run: npx redocly bundle ./docs/swagger/root.swagger.yml --output=./docs/swagger/generated.gen.swagger.yml
+      - name: fix swagger
+        uses: dev-hato/actions-diff-pr-management@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch-name-prefix: "fix-swagger"
