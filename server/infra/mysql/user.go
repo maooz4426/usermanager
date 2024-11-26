@@ -71,7 +71,6 @@ func (r *UserRepository) FindByEmail(ctx context.Context, email string) (*entity
 }
 
 func (r *UserRepository) FindByUUID(ctx context.Context, uuidReq uuid.UUID) (*entity.User, error) {
-
 	var schemaUser schemaUsers
 	if _, err := r.sess.Select("uuid", "name", "email").From(TableName).Where("uuid = ?", uuidReq).LoadContext(ctx, &schemaUser); err != nil {
 		return nil, err

@@ -53,7 +53,6 @@ func (s *UserUsecase) SignIn(ctx context.Context, req *usermanage.UserSignInRequ
 }
 
 func (s *UserUsecase) Get(ctx context.Context, uuid uuid.UUID) (*entity.User, error) {
-
 	user, err := s.userRepository.FindByUUID(ctx, uuid)
 	if err != nil {
 		return nil, err

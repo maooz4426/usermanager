@@ -47,7 +47,6 @@ func (h *Handler) UserSignIn(ctx echo.Context) error {
 
 // (GET /users/{uuid})
 func (h *Handler) GetUser(ctx echo.Context, uuid usermanage.UserUUID) error {
-
 	user, err := h.UserUsecase.Get(ctx.Request().Context(), uuid)
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
@@ -60,5 +59,4 @@ func (h *Handler) GetUser(ctx echo.Context, uuid usermanage.UserUUID) error {
 	}
 
 	return ctx.JSON(http.StatusOK, res)
-
 }
