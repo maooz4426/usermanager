@@ -26,6 +26,8 @@ jobs:
         uses: actions/setup-node@v4.1.0
         with:
           node-version: 20
+      - name: redocly install
+        run: npm -i -g @redocly/cli
       - name: redocly bundle
         run: npx redocly bundle ./docs/swagger/root.swagger.yml --output=./docs/swagger/generated.gen.swagger.yml
       - name: fix swagger
