@@ -48,7 +48,18 @@ CREATE TABLE `users` (
 
 ## Relations
 
-![er](users.svg)
+```mermaid
+erDiagram
+
+
+"users" {
+  bigint id PK
+  varchar_36_ uuid
+  varchar_256_ name
+  varchar_256_ email
+  varchar_255_ password
+}
+```
 
 ---
 

@@ -9,7 +9,22 @@
 
 ## Relations
 
-![er](schema.svg)
+```mermaid
+erDiagram
+
+
+"migrations" {
+  varchar_255_ id PK
+  datetime applied_at
+}
+"users" {
+  bigint id PK
+  varchar_36_ uuid
+  varchar_256_ name
+  varchar_256_ email
+  varchar_255_ password
+}
+```
 
 ---
 
