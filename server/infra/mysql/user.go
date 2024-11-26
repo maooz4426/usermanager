@@ -2,9 +2,10 @@ package mysql
 
 import (
 	"context"
+	"log"
 
 	"github.com/gocraft/dbr/v2"
-	uuid2 "github.com/google/uuid"
+	"github.com/google/uuid"
 	"github.com/maooz4426/usermanager/domain/entity"
 	"github.com/maooz4426/usermanager/domain/repository"
 )
@@ -57,7 +58,7 @@ func (r *UserRepository) FindByEmail(ctx context.Context, email string) (*entity
 		return nil, err
 	}
 
-	uuid, err := uuid2.Parse(schemaUser.UUID)
+	uuid, err := uuid.Parse(schemaUser.UUID)
 	if err != nil {
 		return nil, err
 	}
@@ -67,4 +68,21 @@ func (r *UserRepository) FindByEmail(ctx context.Context, email string) (*entity
 		Password: schemaUser.Password,
 	}
 	return user, err
+}
+
+func (r *UserRepository) FindByUUID(ctx context.Context, uuidReq uuid.UUID) (*entity.User, error) {
+	var schemaUser schemaUsers
+	if _, err := r.sess.Select("uuid", "name", "email").From(TableName).Where("uuid = ?", uuidReq).LoadContext(ctx, &schemaUser); err != nil {
+		return nil, err
+	}
+
+	user := &entity.User{
+		UUID:  uuidReq,
+		Name:  schemaUser.Name,
+		Email: schemaUser.Email,
+	}
+
+	log.Print(user)
+
+	return user, nil
 }
