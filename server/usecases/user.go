@@ -2,7 +2,6 @@ package usecases
 
 import (
 	"context"
-
 	"github.com/google/uuid"
 	"github.com/maooz4426/usermanager/domain/entity"
 	"github.com/maooz4426/usermanager/domain/repository"
@@ -50,4 +49,14 @@ func (s *UserUsecase) SignIn(ctx context.Context, req *usermanage.UserSignInRequ
 	}
 
 	return user.UUID, nil
+}
+
+func (s *UserUsecase) Get(ctx context.Context, uuid uuid.UUID) (*entity.User, error) {
+
+	user, err := s.userRepository.FindByUUID(ctx, uuid)
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
 }

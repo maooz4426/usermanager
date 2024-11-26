@@ -59,8 +59,8 @@ components:
       description: userのuuid
       required: true
       schema:
-        type: integer
-        format: int64
+        type: string
+        format: uuid
       example: 1
   schemas:
     User:
@@ -68,7 +68,7 @@ components:
       properties:
         uuid:
           type: string
-          format: string
+          format: uuid
           description: userのuuid
         name:
           type: string
