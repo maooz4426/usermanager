@@ -4,5 +4,5 @@ description: "userのuuid"
 required: true
 schema:
     type: string
-    format: string
+    format: uuid
 example: 1
