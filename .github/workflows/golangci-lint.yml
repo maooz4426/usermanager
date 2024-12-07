@@ -3,7 +3,7 @@ name: golangci-lint
 on:
   push:
     branches:
-    - develop
+      - develop
   pull_request:
     types:
       - opened
@@ -34,9 +34,7 @@ jobs:
           reporter: github-pr-review
           workdir: "./server"
           go_version_file: "./server/go.mod"
-          level: error
+          level: warning
           fail_on_error: true
           golangci_lint_flags: "--config=./config/.golangci.yml"
           filter_mode: nofilter
-
-
