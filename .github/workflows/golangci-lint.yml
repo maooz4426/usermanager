@@ -34,8 +34,8 @@ jobs:
           reporter: github-pr-review
           workdir: "./server"
           go_version_file: "./server/go.mod"
-          level: warning
-          fail_level: warning
+          level: error
+          fail_level: error
           fail_on_error: true
           golangci_lint_flags: "--config=./config/.golangci.yml"
           filter_mode: nofilter
