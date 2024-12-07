@@ -35,6 +35,7 @@ jobs:
           workdir: "./server"
           go_version_file: "./server/go.mod"
           level: warning
+          fail_level: warning
           fail_on_error: true
           golangci_lint_flags: "--config=./config/.golangci.yml"
           filter_mode: nofilter
