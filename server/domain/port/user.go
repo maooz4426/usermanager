@@ -3,9 +3,8 @@ package port
 import (
 	"context"
 
-	"github.com/maooz4426/usermanager/domain/entity"
-
 	"github.com/google/uuid"
+	"github.com/maooz4426/usermanager/domain/entity"
 	"github.com/maooz4426/usermanager/lib/usermanage"
 )
 
