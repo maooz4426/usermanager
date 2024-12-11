@@ -6,6 +6,5 @@ gen/oapicodegen:
 
 # make gen/zodios API_NAME=
 gen/zodios:
-	pnpx openapi-zod-client "./docs/swagger/generated.gen.swagger.yml" -o "./frontend/src/lib/${API_NAME}.ts" --api-client-name ${API_NAME}API
-	#sed -i '' '/export function createApiClient/,/}/d' ./frontend/src/lib/${API_NAME}.ts
+	pnpx openapi-zod-client "./docs/swagger/generated.gen.swagger.yml" -o "./frontend/src/lib/client.ts" --api-client-name usermanageAPI -t "./frontend/config/zodios-template.hbs"
 
